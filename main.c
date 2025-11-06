@@ -66,6 +66,11 @@ void actionNode(int player)
     }
 }
 
+void generatePlayers(int n, int initEnergy); //generate a new player
+{
+    //구조체로 입력
+}
+
 
 
 int main(int argc, const char * argv[]) {
@@ -93,8 +98,9 @@ int main(int argc, const char * argv[]) {
     }
     
     printf("Reading board component......\n");
-    while () //read a node parameter set
+    while (fscanf(fp, "%s %i %i %i", name, &type, &credit, &energy) == 4) //read a node parameter set
     {
+        board_nr = smmObj_genNode(name, type, credit, energy);
         //store the parameter set
     }
     fclose(fp);
@@ -134,17 +140,22 @@ int main(int argc, const char * argv[]) {
     fclose(fp);
     printf("Total number of festival cards : %i\n", festival_nr);
     
-    
-    
+
     //2. Player configuration ---------------------------------------------------------------------------------
-    /*
+    int player_nr
+    player_nr = 0;
+
+    printf("Enter the number of players : %i", player_nr); //check player number
+    scanf("%i", &player_nr);
+
     do
     {
-        //input player number to player_nr
+        int player_i = 1;
+        generatePlayers(player_i, START_ENERGY);
+        player_i++;
     }
-    while ();
-    generatePlayers();
-    */
+    while (player_nr > player_i);
+
     
     //3. SM Marble game starts ---------------------------------------------------------------------------------
     while () //is anybody graduated?
