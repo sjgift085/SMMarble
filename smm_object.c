@@ -54,9 +54,27 @@ int smmObj_genNode(char* name, int type, int credit, int energy)
 
 
 //member retrieving
+char* smmObj_getName(int node_nr)
+{
+    return (smm_name[nome_nr]);
+}
 
+int smmObj_getType(int node_nr)
+{
+    return (smm_type[nome_nr]);
+}
 
+char* smmObj_getNodeName(int node_type)
+{
+    return (smm_NodeName[node_type]);
+}
 
+int smmObj_getEnergy(int node_nr)
+{
+    return (smm_type[nome_nr]);
+}
+
+#if 0
 //element to string
 char* smmObj_getNodeName(smmNode_e type)
 {
@@ -67,4 +85,4 @@ char* smmObj_getGradeName(smmGrade_e grade)
 {
     return smmGradeName[grade];
 }
-
+#endif

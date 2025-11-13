@@ -17,5 +17,7 @@
 #define MAX_DIE                     6
 #define MAX_PLAYER                  10
 
+#define START_ENERGY				20
+
 
 #endif /* smm_common_h */
