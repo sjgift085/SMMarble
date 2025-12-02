@@ -134,7 +134,7 @@ void actionNode(int player)
 
         case SMMNODE_TYPE_HOME:
             smm_players[player].energy += energy;
-            if(smm_players[player].credit <= GRADUATE_CREDIT){
+            if(smm_players[player].credit >= GRADUATE_CREDIT){
                 smm_players[player].flag_graduated = 1;
             }
             break;
