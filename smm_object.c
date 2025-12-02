@@ -13,7 +13,7 @@
 #define MAX_NODETYPE    7
 #define MAX_GRADE       9
 
-static char smmObj_smmNodeName[MAX_NODETYPE][MAX_CHARNAME] = {
+static char smmObj_NodeName[MAX_NODETYPE][MAX_CHARNAME] = {
     "lecture",
     "restaurant",
     "laboratory",
@@ -48,7 +48,6 @@ int smmObj_genNode(char* name, int type, int credit, int energy)
     smmObj_nodeNr++;
 
     return(smmObj_nodeNr);
-    
 }
 
 
@@ -56,27 +55,27 @@ int smmObj_genNode(char* name, int type, int credit, int energy)
 //member retrieving
 char* smmObj_getNodeName(int node_nr)
 {
-    return (smmObj_board[nome_nr].name);
+    return (smmObj_board[node_nr].name);
 }
 
 int smmObj_getNodeType(int node_nr)
 {
-    return (smmObj_board[nome_nr].type);
+    return (smmObj_board[node_nr].type);
 }
 
 int smmObj_getNodeCredit(int node_nr)
 {
-    return (smmObj_board[nome_nr].credit);
+    return (smmObj_board[node_nr].credit);
 }
 
 char* smmObj_getTypeName(int node_type)
 {
-    return (smmObj_nodeName[node_type]);
+    return (smmObj_NodeName[node_type]);
 }
 
 int smmObj_getNodeEnergy(int node_nr)
 {
-    return (smmObj_board[nome_nr].energy);
+    return (smmObj_board[node_nr].energy);
 }
 
 #if 0

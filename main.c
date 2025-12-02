@@ -66,9 +66,9 @@ void generatePlayers(int n, int initEnergy) //generate a new player
         smm_players[i].energy = initEnergy;
         smm_players[i].flag_graduated = 0;
 
-        printf("Input %i-th player name: ");
+        printf("Input %i-th player name: ", i+1);
         scanf("%s", &smm_players[i].name[0]);
-        fflush(stdin)
+        fflush(stdin);
     }
 }
 
@@ -112,7 +112,7 @@ int rolldie(int player)
 //action code when a player stays at a node
 void actionNode(int player)
 {
-    int type = smmObj_getTypeName(smm_players[player].pos);
+    int type = smmObj_getNodeType(smm_players[player].pos);
     int credit = smmObj_getNodeCredit(smm_players[player].pos);
     int energy = smmObj_getNodeEnergy(smm_players[player].pos);
 
@@ -190,7 +190,7 @@ int main(int argc, const char * argv[]) {
     printf("Total number of board nodes : %i\n", smm_board_nr);
     
     
-    #if 0
+		/*
     //2. food card config 
     if ((fp = fopen(FOODFILEPATH,"r")) == NULL)
     {
@@ -205,7 +205,7 @@ int main(int argc, const char * argv[]) {
     }
     fclose(fp);
     printf("Total number of food cards : %i\n", smm_food_nr);
-    
+     
     
     
     //3. festival card config 
@@ -222,17 +222,17 @@ int main(int argc, const char * argv[]) {
     }
     fclose(fp);
     printf("Total number of festival cards : %i\n", smm_festival_nr);
-    #endif
+		*/
 
     //2. Player configuration ---------------------------------------------------------------------------------
     do
     {
-        printf("Enter the number of players : %i", smm_player_nr); //check player number
+        printf("Enter the number of players : "); //check player number
         scanf("%i", &smm_player_nr);
         fflush(stdin);
 
         if(smm_player_nr <= 0 || smm_player_nr > MAX_PLAYER)
-            printf("Invalid playver number!\n")
+            printf("Invalid playver number!\n");
     }
     while (smm_player_nr <= 0 || smm_player_nr > MAX_PLAYER);
     
@@ -258,7 +258,7 @@ int main(int argc, const char * argv[]) {
         actionNode(turn);
         
         //4-5. next turn
-        cnt++;
+        
         turn = (turn + 1) % smm_player_nr;
         
     }
