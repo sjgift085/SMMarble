@@ -30,7 +30,7 @@ typedef struct{
     int flag_graduated;
 } smm_player_t;
 
-smm_player_t smm_players[MAX_PLAYER];
+smm_player_t *smm_players;
 
 void generatePlayers(int n, int initEnergy); //generate a new player
 void printPlayerStatus(void); //print all player status at the beginning of each turn
@@ -60,6 +60,9 @@ int isGraduated(void)
 void generatePlayers(int n, int initEnergy) //generate a new player
 {
     int i;
+
+    smm_players = (smm_player_t*)malloc(n*sizeof(smm_player_t));
+
     for(i=0; i<n; i++){
         smm_players[i].pos = 0;
         smm_players[i].credit = 0;
@@ -183,7 +186,8 @@ int main(int argc, const char * argv[]) {
     printf("Reading board component......\n");
     while (fscanf(fp, "%s %i %i %i", name, &type, &credit, &energy) == 4) //read a node parameter set
     {
-        smm_board_nr = smmObj_genNode(name, type, credit, energy);
+        void* ptr;
+        ptr = smmObj_genNode(name, SMMMODE_OBJTYPE_BOARD, type, credit, energy, 0);
         //store the parameter set
     }
     fclose(fp);
@@ -263,6 +267,8 @@ int main(int argc, const char * argv[]) {
         
     }
     
+    free(smm_players);
+
     system("PAUSE");
     return 0;
 }

@@ -38,10 +38,13 @@
     C-
 */
 
-
+#define SMMMODE_OBJTYPE_BOARD   0
+#define SMMMODE_OBJTYPE_GRADE   1
+#define SMMMODE_OBJTYPE_FOOD    2
+#define SMMMODE_OBJTYPE_FEST    3
 
 //object generation
-int smmObj_genNode(char* name, int type, int credit, int energy);
+void* smmObj_genObject(char* name, int objType, int type, int credit, int energy, int grade);
 char* smmObj_genNodeNme(int node_nr);
 int smmObj_getNodeType(int node_nr);
 int smmObj_getNodeEnergy(int node_nr);
