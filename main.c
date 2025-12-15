@@ -153,14 +153,14 @@ void actionNode(int player)
     switch(type)
     {
         case SMMNODE_TYPE_LECTURE:
-        if(findGrade(,) == NULL){
+        if(findGrade(player, smmObj_getObjectName(ptr)) == NULL){
             smm_players[player].credit += credit;
             smm_players[player].energy -= energy;
 
             grade = rand() % SMMMODE_MAX_GRADE;
 
             gradePtr = smmObj_genObject(smmObj_getObjectName(ptr), SMMMODE_OBJTYPE_GRADE, type, credit, energy, grade);
-            smmdb_addTail(LISTNO_OFFSET_GRADE+player, gradPtr);
+            smmdb_addTail(LISTNO_OFFSET_GRADE+player, gradePtr);
         }
 
             break;
@@ -226,8 +226,9 @@ int main(int argc, const char * argv[]) {
         void* ptr;
         printf("%s %i %i %i\n", name, type, credit, energy);
         ptr = smmObj_genNode(name, SMMMODE_OBJTYPE_BOARD, type, credit, energy, 0);
-        smm_board_nr = smmdb_addTail(int list_nr, ptr);
+        smm_board_nr = smmdb_addTail(LISTNO_NODE, ptr);
         //store the parameter set
+        
     }
     fclose(fp);
     printf("Total number of board nodes : %i\n", smm_board_nr);
@@ -279,7 +280,7 @@ int main(int argc, const char * argv[]) {
     }
     while (smm_player_nr <= 0 || smm_player_nr > MAX_PLAYER);
     
-    generatePlayers(smm_player_nr, smmObj_getObject_Energy(smmdb_getData(SMMMODE_OBJECT_BOARD, 0)));
+    generatePlayers(smm_player_nr, smmObj_getObject_Energy(smmdb_getData(LISTNO_NODE, 0)));
 
     turn = 0;
 
