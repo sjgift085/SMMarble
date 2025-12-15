@@ -11,20 +11,19 @@
 
 #define MAX_NODENR      100
 #define MAX_NODETYPE    7
-#define MAX_GRADE       13
 
-#define GRADE_A+        0
+#define GRADE_Ap        0
 #define GRADE_A0        1
-#define GRADE_A-        2
-#define GRADE_B+        3
+#define GRADE_Am        2
+#define GRADE_Bp        3
 #define GRADE_B0        4
-#define GRADE_B-        5
-#define GRADE_C+        6
+#define GRADE_Bm        5
+#define GRADE_Cp        6
 #define GRADE_C0        7
-#define GRADE_C-        8
-#define GRADE_D+        9
+#define GRADE_Cm        8
+#define GRADE_Dp        9
 #define GRADE_D0        10
-#define GRADE_D-        11
+#define GRADE_Dm        11
 #define GRADE_F         12
 
 
@@ -84,17 +83,18 @@ void* smmObj_genObject(char* name, int objType, int type, int credit, int energy
 
 
 //member retrieving
-char* smmObj_getNodeName(int node_nr)
+char* smmObj_getObjectName(int node_nr)
 {
-    return (smmObj_board[node_nr].name);
+    smmObj_object_t* objPtr = (smmObj_object_t*)ptr;
+    return (objPtr->name);
 }
 
-int smmObj_getNodeType(int node_nr)
+int smmObj_getObjectType(int node_nr)
 {
     return (smmObj_board[node_nr].type);
 }
 
-int smmObj_getNodeCredit(int node_nr)
+int smmObj_getObjectCredit(int node_nr)
 {
     return (smmObj_board[node_nr].credit);
 }
@@ -104,9 +104,10 @@ char* smmObj_getTypeName(int node_type)
     return (smmObj_NodeName[node_type]);
 }
 
-int smmObj_getNodeEnergy(int node_nr)
+int smmObj_getObjectEnergy(int node_nr)
 {
-    return (smmObj_board[node_nr].energy);
+    smmObj_object_t* objPtr = (smmObj_object_t*)ptr;
+    return (objPtr->energy);
 }
 
 #if 0

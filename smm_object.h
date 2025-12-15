@@ -38,6 +38,8 @@
     C-
 */
 
+#define SMMMODE_MAX_GRADE       13
+
 #define SMMMODE_OBJTYPE_BOARD   0
 #define SMMMODE_OBJTYPE_GRADE   1
 #define SMMMODE_OBJTYPE_FOOD    2
@@ -45,11 +47,11 @@
 
 //object generation
 void* smmObj_genObject(char* name, int objType, int type, int credit, int energy, int grade);
-char* smmObj_genNodeNme(int node_nr);
-int smmObj_getNodeType(int node_nr);
-int smmObj_getNodeEnergy(int node_nr);
+char* smmObj_genObjectNme(int node_nr);
+int smmObj_getObjectType(int node_nr);
+int smmObj_getObjectEnergy(int node_nr);
 char* smmObj_getTypeName(int node_type);
-int smmObj_getNodeCredit(int node_nr);
+int smmObj_getObjectCredit(int node_nr);
 
 //member retrieving
 
