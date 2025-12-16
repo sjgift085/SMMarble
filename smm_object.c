@@ -1,8 +1,6 @@
 //
-//  smm_node.c
+//  smm_object.c
 //  SMMarble
-//
-//  Created by Juyeop Kim on 2023/11/05.
 //
 
 #include "smm_common.h"
@@ -37,7 +35,7 @@ static char smmObj_NodeName[MAX_NODETYPE][MAX_CHARNAME] = {
     "festival"
 };
 
-static char smmObj_gradeName[MAX_GRADE][MAX_CHARNAME] = {
+static char smmObj_gradeName[SMMMODE_MAX_GRADE][MAX_CHARNAME] = {
     "A+",
     "A0",
     "A-",
@@ -65,10 +63,9 @@ typedef struct{
 
 
 //object generation
-void* smmObj_genObject(char* name, int objType, int type, int credit, int energy, int grade)
+void* smmObj_genNode(char* name, int objType, int type, int credit, int energy, int grade)
 {
-    smmObj_object_t* ptr;
-    ptr = (smmObj_object_t*) malloc(sizeof(smmObj_object_t));
+    smmObj_object_t* ptr = (smmObj_object_t*) malloc(sizeof(smmObj_object_t));
 
     strcpy(ptr->name, name);
     ptr->type = type;
@@ -77,26 +74,75 @@ void* smmObj_genObject(char* name, int objType, int type, int credit, int energy
     ptr->energy = energy;
     ptr->grade = grade;
 
-    return((void*)ptr);
+    return (void*)ptr;
 }
 
-
+void* smmObj_genObject(char* name, int objType, int type, int credit, int energy, int grade)
+{
+    return smmObj_genNode(name, objType, type, credit, energy, grade);
+}
 
 //member retrieving
-char* smmObj_getObjectName(int node_nr)
+
+//name
+char* smmObj_getObjectName(void* obj)
 {
-    smmObj_object_t* objPtr = (smmObj_object_t*)ptr;
-    return (objPtr->name);
+    smmObj_object_t* ptr = (smmObj_object_t*)obj;
+    return (ptr->name);
 }
 
-int smmObj_getObjectType(int node_nr)
+char* smmObj_getNodeName(void* obj)
 {
-    return (smmObj_board[node_nr].type);
+ 	return smmObj_getObjectName(obj);
 }
 
-int smmObj_getObjectCredit(int node_nr)
+/*char* smmObj_getNodeName(void* obj)
 {
-    return (smmObj_board[node_nr].credit);
+    smmObj_object_t* ptr = (smmObj_object_t*)obj;
+    return (ptr->name);
+}*/
+
+//type
+int smmObj_getNodeType(void* obj)
+{
+ 	smmObj_object_t* ptr = (smmObj_object_t*)obj;
+ 	return (ptr->type);
+}
+
+//object
+int smmObj_getObjectType(void* obj)
+{
+ 	smmObj_object_t* ptr = (smmObj_object_t*)obj;
+    return (ptr->objType);
+}
+
+//credit
+int smmObj_getNodeCredit(void* obj)
+{
+ 	smmObj_object_t* ptr = (smmObj_object_t*)obj;
+    return (ptr->credit);
+}
+int smmObj_getObjectCredit(void* obj)
+{
+ 	return smmObj_getNodeCredit(obj);
+}
+
+//energy
+int smmObj_getNodeEnergy(void* obj)
+{
+ 	smmObj_object_t* ptr = (smmObj_object_t*)obj;
+ 	return (ptr->energy);
+}
+int smmObj_getObject_Energy(void* obj)
+{
+    return smmObj_getNodeEnergy(obj);
+}
+
+//grade
+int smmObj_getNodeGrade(void* obj)
+{
+ 	smmObj_object_t* ptr = (smmObj_object_t*)obj;
+ 	return (ptr->grade);
 }
 
 char* smmObj_getTypeName(int node_type)
@@ -104,11 +150,7 @@ char* smmObj_getTypeName(int node_type)
     return (smmObj_NodeName[node_type]);
 }
 
-int smmObj_getObjectEnergy(int node_nr)
-{
-    smmObj_object_t* objPtr = (smmObj_object_t*)ptr;
-    return (objPtr->energy);
-}
+
 
 #if 0
 char* smmObj_getGradeName(smmGrade_e grade)

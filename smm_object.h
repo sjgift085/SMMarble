@@ -2,8 +2,6 @@
 //  smm_object.h
 //  SMMarble object
 //
-//  Created by Juyeop Kim on 2023/11/05.
-//
 
 #ifndef smm_object_h
 #define smm_object_h
@@ -47,17 +45,28 @@
 
 //object generation
 void* smmObj_genObject(char* name, int objType, int type, int credit, int energy, int grade);
-char* smmObj_genObjectNme(int node_nr);
-int smmObj_getObjectType(int node_nr);
-int smmObj_getObjectEnergy(int node_nr);
-char* smmObj_getTypeName(int node_type);
-int smmObj_getObjectCredit(int node_nr);
-
-//member retrieving
+void* smmObj_genNode(char* name, int objType, int type, int credit, int energy, int grade);
 
 
-//element to string
+// member retrieving
+// [중요] 모든 함수 인자를 int node_nr에서 void* obj로 변경했습니다.
 
+char* smmObj_getNodeName(void* obj);      // main.c 호출 대응
+char* smmObj_getObjectName(void* obj);    // 오타 수정 (gen -> get)
 
+int smmObj_getNodeType(void* obj);        // main.c 호출 대응
+int smmObj_getObjectType(void* obj);
+
+int smmObj_getNodeCredit(void* obj);      // main.c 호출 대응
+int smmObj_getObjectCredit(void* obj);
+
+int smmObj_getNodeEnergy(void* obj);      // main.c 호출 대응
+int smmObj_getObjectEnergy(void* obj);
+int smmObj_getObject_Energy(void* obj);   // main.c 초기화 부분 대응
+
+int smmObj_getNodeGrade(void* obj);
+
+// element to string
+char* smmObj_getTypeName(int node_type);  // 타입 이름은 int로 유지
 
 #endif /* smm_object_h */
