@@ -256,7 +256,7 @@ void actionNode(int player)
 
                 smm_players[player].energy += food_energy;
 
-                printf("Type: FOOD CHANCE -> %s! (Energy +%d)\n", smmObj_getNodeName(foodPtr), food_energy);            
+                printf("    Type: FOOD CHANCE -> %s! (Energy +%d)\n", smmObj_getNodeName(foodPtr), food_energy);            
             }
             break;
 
@@ -265,7 +265,7 @@ void actionNode(int player)
                 rand_idx = rand() % smm_festival_nr;
                 festPtr = smmdb_getData(LISTNO_FESTCARD, rand_idx);
 
-                printf("Type: FESTIVAL -> Mission: %s\n", smmObj_getNodeName(festPtr));
+                printf("    Type: FESTIVAL -> Mission: %s\n", smmObj_getNodeName(festPtr));
             }
             break;  
 
@@ -305,7 +305,7 @@ int main(int argc, const char * argv[]) {
     while (fscanf(fp, "%s %i %i %i", name, &type, &credit, &energy) == 4) //read a node parameter set
     {
         void* ptr;
-        printf("%s %i %i %i\n", name, type, credit, energy);
+        //printf("%s %i %i %i\n", name, type, credit, energy);
         ptr = smmObj_genNode(name, SMMMODE_OBJTYPE_BOARD, type, credit, energy, 0);
         smmdb_addTail(LISTNO_NODE, ptr);
         smm_board_nr++;
