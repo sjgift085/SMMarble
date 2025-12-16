@@ -256,7 +256,7 @@ void actionNode(int player)
 
                 smm_players[player].energy += food_energy;
 
-                printf("Type: FOOD CHANCE -> Win a %s! (Energy +%d)\n", smmObj_getNodeName(foodPtr), food_energy);            
+                printf("Type: FOOD CHANCE -> %s! (Energy +%d)\n", smmObj_getNodeName(foodPtr), food_energy);            
             }
             break;
 
