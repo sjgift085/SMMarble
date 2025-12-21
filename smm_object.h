@@ -1,20 +1,5 @@
-//
-//  smm_object.h
-//  SMMarble object
-//
-
 #ifndef smm_object_h
 #define smm_object_h
-
-/* node type :
-    lecture,
-    restaurant,
-    laboratory,
-    home,
-    experiment,
-    foodChance,
-    festival
-*/
 
 #define SMMNODE_TYPE_LECTURE            0
 #define SMMNODE_TYPE_RESTAURANT         1
@@ -23,18 +8,6 @@
 #define SMMNODE_TYPE_GOTOLAB            4
 #define SMMNODE_TYPE_FOODCHANCE         5
 #define SMMNODE_TYPE_FESTIVAL           6
-
-/* grade :
-    A+,
-    A0,
-    A-,
-    B+,
-    B0,
-    B-,
-    C+,
-    C0,
-    C-
-*/
 
 #define SMMMODE_MAX_GRADE       13
 
@@ -49,24 +22,27 @@ void* smmObj_genNode(char* name, int objType, int type, int credit, int energy, 
 
 
 // member retrieving
-// [중요] 모든 함수 인자를 int node_nr에서 void* obj로 변경했습니다.
 
-char* smmObj_getNodeName(void* obj);      // main.c 호출 대응
-char* smmObj_getObjectName(void* obj);    // 오타 수정 (gen -> get)
+//object name
+char* smmObj_getNodeName(void* obj);
+char* smmObj_getObjectName(void* obj);
 
-int smmObj_getNodeType(void* obj);        // main.c 호출 대응
+//object type
+int smmObj_getNodeType(void* obj);
 int smmObj_getObjectType(void* obj);
 
-int smmObj_getNodeCredit(void* obj);      // main.c 호출 대응
+//credit
+int smmObj_getNodeCredit(void* obj);
 int smmObj_getObjectCredit(void* obj);
 
-int smmObj_getNodeEnergy(void* obj);      // main.c 호출 대응
+//energy
+int smmObj_getNodeEnergy(void* obj);    
 int smmObj_getObjectEnergy(void* obj);
-int smmObj_getObject_Energy(void* obj);   // main.c 초기화 부분 대응
 
+//grade
 int smmObj_getNodeGrade(void* obj);
 
 // element to string
-char* smmObj_getTypeName(int node_type);  // 타입 이름은 int로 유지
+char* smmObj_getTypeName(int node_type);
 
 #endif /* smm_object_h */

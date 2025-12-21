@@ -1,8 +1,3 @@
-//
-//  main.c
-//  SMMarble
-//
-
 #include <time.h>
 #include <string.h>
 #include <stdio.h>
@@ -38,18 +33,11 @@ void generatePlayers(int n, int initEnergy); //generate a new player
 void printPlayerStatus(void); //print all player status at the beginning of each turn
 void goForward(int player, int step); //make player go "step" steps on the board (check if player is graduated)
 int isGraduated(void); //check if any player is graduated
-//void printGrades(int player); //print grade history of the player
 void* findGrade(int player, char *lectureName); //find the grade from the player's grade history
-//char* smmObj_getObjectName(void *obj);
 void printGrades(int player); //print all the grade history of the player
 
 
 //function prototypes
-#if 0
-float calcAverageGrade(int player); //calculate average grade of the player
-smmGrade_e takeLecture(int player, char *lectureName, int credit); //take the lecture (insert a grade of the player)
-#endif
-
 void* findGrade(int player, char *lectureName)
 {
     int i;
@@ -60,7 +48,6 @@ void* findGrade(int player, char *lectureName)
         void *ptr = smmdb_getData(LISTNO_OFFSET_GRADE + player, i);
         if(strcmp(smmObj_getObjectName(ptr), lectureName) == 0)
         {
-			      //if ���ǿ� ptr != NULL && strcmp ��¼��  
             return ptr;
         }
     }
@@ -142,7 +129,7 @@ void goForward(int player, int step) //make player go "step" steps on the board 
     }
 
     ptr = smmdb_getData(LISTNO_NODE, smm_players[player].pos);
-    printf("start from %i(%s)  (%i)", smm_players[player].pos, smmObj_getNodeName(ptr), step);
+    printf("\nstart from %i(%s)  (%i)", smm_players[player].pos, smmObj_getNodeName(ptr), step);
 
     for(i=0; i<step; i++){
         smm_players[player].pos = (smm_players[player].pos + 1) % smm_board_nr;
@@ -157,7 +144,7 @@ void goForward(int player, int step) //make player go "step" steps on the board 
 int rolldie(int player)
 {
     char c;
-    printf(" Press any key to roll a die (press g to see grade): ");
+    printf("**Press any key to roll a die** (press g to see grade): ");
     c = getchar();
     fflush(stdin);
     
@@ -188,7 +175,7 @@ void actionNode(int player)
     int k;
     void *targetPtr;
 
-    printf(" --> player%i pos: %i, type: %s, credit: %i, energy: %i\n", player, smm_players[player].pos, smmObj_getTypeName(type), credit, energy);
+    printf(" --> player%i pos: %i, type: %s, credit: %i, energy: %i\n", player+1, smm_players[player].pos, smmObj_getTypeName(type), credit, energy);
 
     switch(type)
     {
@@ -242,7 +229,6 @@ void actionNode(int player)
             }
 
             smm_players[player].experiment_fin = (rand() % MAX_DIE) + 1;
-
             printf("    Type: GOTO LAB -> Moved to Lab! Experiment Goal: %d\n", smm_players[player].experiment_fin);
             break;
 
@@ -252,8 +238,6 @@ void actionNode(int player)
                 foodPtr = smmdb_getData(LISTNO_FOODCARD, rand_idx);
 
                 food_energy = smmObj_getNodeEnergy(foodPtr);
-                //char* foodName = smmObj_getNodeName(foodPtr);
-
                 smm_players[player].energy += food_energy;
 
                 printf("    Type: FOOD CHANCE -> %s! (Energy +%d)\n", smmObj_getNodeName(foodPtr), food_energy);            
@@ -335,8 +319,7 @@ int main(int argc, const char * argv[]) {
     fclose(fp);
     printf("Total number of food cards : %i\n", smm_food_nr);
      
-    
-#if 1
+
     //3. festival card config 
     if ((fp = fopen(FESTFILEPATH,"r")) == NULL)
     {
@@ -355,7 +338,7 @@ int main(int argc, const char * argv[]) {
     }
     fclose(fp);
     printf("Total number of festival cards : %i\n", smm_festival_nr);
-#endif
+
 
     //2. Player configuration ---------------------------------------------------------------------------------
     do
@@ -387,11 +370,10 @@ int main(int argc, const char * argv[]) {
         //4-3. go forward
         goForward(turn, die_result);
 
-		//4-4. take action at the destination node of the board
+	    	//4-4. take action at the destination node of the board
         actionNode(turn);
         
         //4-5. next turn
-        
         turn = (turn + 1) % smm_player_nr;
         printf("\n");
     }

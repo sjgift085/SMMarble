@@ -1,8 +1,3 @@
-//
-//  smm_object.c
-//  SMMarble
-//
-
 #include "smm_common.h"
 #include "smm_object.h"
 #include <string.h>
@@ -84,32 +79,23 @@ void* smmObj_genObject(char* name, int objType, int type, int credit, int energy
 
 //member retrieving
 
-//name
+//object name
 char* smmObj_getObjectName(void* obj)
 {
     smmObj_object_t* ptr = (smmObj_object_t*)obj;
     return (ptr->name);
 }
-
 char* smmObj_getNodeName(void* obj)
 {
  	return smmObj_getObjectName(obj);
 }
 
-/*char* smmObj_getNodeName(void* obj)
-{
-    smmObj_object_t* ptr = (smmObj_object_t*)obj;
-    return (ptr->name);
-}*/
-
-//type
+//object type
 int smmObj_getNodeType(void* obj)
 {
  	smmObj_object_t* ptr = (smmObj_object_t*)obj;
  	return (ptr->type);
 }
-
-//object
 int smmObj_getObjectType(void* obj)
 {
  	smmObj_object_t* ptr = (smmObj_object_t*)obj;
@@ -150,11 +136,3 @@ char* smmObj_getTypeName(int node_type)
     return (smmObj_NodeName[node_type]);
 }
 
-
-
-#if 0
-char* smmObj_getGradeName(smmGrade_e grade)
-{
-    return smmGradeName[grade];
-}
-#endif

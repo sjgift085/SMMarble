@@ -1,8 +1,3 @@
-//
-//  smm_common.h
-//  SMMarble
-//
-
 #ifndef smm_common_h
 #define smm_common_h
 

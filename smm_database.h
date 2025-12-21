@@ -1,8 +1,3 @@
-//
-//  smm_database.h
-//  infection Path
-//
-
 #ifndef smm_database_h
 #define smm_database_h
 
